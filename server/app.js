@@ -41,16 +41,11 @@ wsServer.on('request', function(request) {
     console.log((new Date()) + ' Connection accepted.');
     connection.on('message', function(message) {
         if (message.type === 'utf8') {
-            //console.log('Received Message: ' + message.utf8Data);
-            //connection.sendUTF(message.utf8Data);
             var to_write = new Buffer(message.utf8Data, 'base64');
-            // pretend it's base64 and convert it
-            //process.stdout.write(to_write);
 	    write_to_vlla(to_write);
         }
         else if (message.type === 'binary') {
-            console.log('Received Binary Message of ' + message.binaryData.length + ' bytes');
-            connection.sendBytes(message.binaryData);
+          write_to_vlla(message.binaryData);
         }
     });
     connection.on('close', function(reasonCode, description) {
