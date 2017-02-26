@@ -4,7 +4,8 @@
   "description": "client to vlla-socket",
   "main": "app.js",
   "scripts": {
-    "start": "forever"
+    "start": "forever",
+    "startmon": "nodemon"
   },
   "author": "",
   "license": "MIT",
@@ -12,5 +13,8 @@
     "canvas": "^1.6.3",
     "forever": "^0.15.3",
     "websocket": "^1.0.24"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
