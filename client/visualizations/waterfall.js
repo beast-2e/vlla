@@ -4,23 +4,20 @@ var c = vlla.requestCanvas();
 var ctx = vlla.requestContext();
 
 var fps = 60;
-//initial
+
 var w = c.width = vlla.width,
     h = c.height = vlla.height,
-    ctx = c.getContext('2d'),
 
     //parameters
     total = w,
     accelleration = .05,
 
-    //afterinitial calculations
     size = w/total,
     occupation = w/total,
     repaintColor = 'rgba(0, 0, 0, .04)'
     colors = [],
     dots = [],
     dotsVel = [];
-//ctx.scale(4, 4);
 
 //setting the colors' hue
 //and y level for all dots
@@ -33,7 +30,8 @@ for(var i = 0; i < total; ++i){
 }
 
 function anim(){
-  setInterval(anim, 1000 / fps);
+  setTimeout(anim, 1000 / fps);
+
   ctx.fillStyle = repaintColor;
   ctx.fillRect(0, 0, w, h);
 
@@ -51,6 +49,4 @@ function anim(){
   vlla.render();
 }
 
-// fill background
-//context.fillStyle = 'rgb(0, 0, 0)';
-//context.fillRect(0, 0, vlla.width, vlla.height);
+anim();
