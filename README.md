@@ -12,7 +12,7 @@ npm run start
 ### Client
 ```sh
 cd client
-node visualizations/[YOUR VISUALIZATION]
+npm run start -- visualizations/[YOUR VISUALIZATION]
 ```
 
 ## Structure
