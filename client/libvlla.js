@@ -5,6 +5,7 @@ var WebSocketClient = require('websocket').client
   , Canvas = require('canvas')
   , canvas = new Canvas(VLLA_WIDTH, VLLA_HEIGHT)
   , context = canvas.getContext('2d');
+  //, buffer = Buffer.allocUnsafe(VLLA_WIDTH * VLLA_HEIGHT);
 
 var connected = false;
 
@@ -18,6 +19,7 @@ client.on('connectFailed', function(error) {
 
 client.on('connect', function(conn) {
   connected = true;
+  connection = conn;
 
   console.log('WebSocket client connected');
 
@@ -38,19 +40,19 @@ client.on('connect', function(conn) {
 
 client.connect('ws://localhost:8080/', 'vlla');
 
-module.exports = {
-  encode: function(pixels) {
-    var frame = "";
-    for (var i = 0; i < pixels.length; i += 4) {
-      frame += String.fromCharCode(
-        (Math.floor(pixels[i + 1] / 32) << 5) + // Red - 3 bits
-        (Math.floor(pixels[i + 2] / 32) << 2) + // Green - 3 bits
-        (Math.floor(pixels[i + 3] / 64)) // Blue - 2 bits
-      );
-    }
+function encode(pixels) {
+  this.buffer = this.buffer || new Buffer(VLLA_WIDTH * VLLA_HEIGHT);
 
-    return frame;
-  },
+  for (var i = 0; i < pixels.length; i += 4) {
+    this.buffer[i / 4] = (Math.floor(pixels[i + 2] / 32) << 5) + // Red - 3 bits
+      (Math.floor(pixels[i + 1] / 32) << 2) + // Green - 3 bits
+      (Math.floor(pixels[i] / 64)); // Blue - 2 bits
+  }
+
+  return this.buffer;
+}
+
+module.exports = {
 
   width: VLLA_WIDTH,
   height: VLLA_HEIGHT,
@@ -66,8 +68,7 @@ module.exports = {
   render: function() {
     if (connected) {
       var buffer = canvas.toBuffer('raw');
-      var encoded = vlla.encode(buffer);
-      connection.sendBytes(buffer);
+      connection.send(encode(buffer));
     }
   },
 };
