@@ -4,13 +4,13 @@ the vlla resides on 2E, East Campus, MIT. vlla represents a rethinking of the tr
 
 ## Launching
 ### Server
-```
+```sh
 cd server
 npm run start
 ```
 
 ### Client
-```
+```sh
 cd client
 node visualizations/[YOUR VISUALIZATION]
 ```
@@ -20,7 +20,7 @@ node visualizations/[YOUR VISUALIZATION]
 The local client starts up a node server that sends frames to the server. Ideally, you'll want to keep this local client running when no remote clients are connected to the vlla. You're expected to write your visualizations in `/client/visualizations`. Since this renders to node-canvas, any valid HTML5 Canvas commands will work.
 
 #### Example
-```
+```javascript
 var vlla = require('../libvlla.js');
 
 // request a canvas and context to render to.
