@@ -1,0 +1,14 @@
+{
+  "name": "vlla-client",
+  "version": "0.0.1",
+  "description": "client to vlla-socket",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "canvas": "^1.6.3"
+  }
+}

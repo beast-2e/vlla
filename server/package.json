@@ -1,0 +1,16 @@
+{
+  "name": "vlla-socket",
+  "version": "0.0.1",
+  "description": "vlla websocket server",
+  "main": "app.js",
+  "scripts": {
+    "start": "forever app.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "forever": "^0.15.3",
+    "serialport": "^4.0.7",
+    "websocket": "^1.0.24"
+  }
+}

@@ -1,0 +1,42 @@
+info it worked if it ends with ok
+verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'install', 'serialport' ]
+info using npm@1.1.4
+info using node@v0.6.19
+verbose config file /home/pi/.npmrc
+verbose config file /usr/etc/npmrc
+verbose config file /usr/share/npm/npmrc
+verbose cache add [ 'serialport', null ]
+silly cache add: name, spec, args [ undefined, 'serialport', [ 'serialport', null ] ]
+verbose parsed url { pathname: 'serialport',
+verbose parsed url   path: 'serialport',
+verbose parsed url   href: 'serialport' }
+verbose addNamed [ 'serialport', '' ]
+verbose addNamed [ null, '' ]
+silly name, range, hasData [ 'serialport', '', false ]
+verbose raw, before any munging serialport
+verbose url resolving [ 'https://registry.npmjs.org/', './serialport' ]
+verbose url resolved https://registry.npmjs.org/serialport
+http GET https://registry.npmjs.org/serialport
+ERR! Error: failed to fetch from registry: serialport
+ERR!     at /usr/share/npm/lib/utils/npm-registry-client/get.js:139:12
+ERR!     at cb (/usr/share/npm/lib/utils/npm-registry-client/request.js:31:9)
+ERR!     at Request._callback (/usr/share/npm/lib/utils/npm-registry-client/request.js:136:18)
+ERR!     at Request.callback (/usr/lib/nodejs/request/main.js:119:22)
+ERR!     at Request.<anonymous> (/usr/lib/nodejs/request/main.js:212:58)
+ERR!     at Request.emit (events.js:88:20)
+ERR!     at ClientRequest.<anonymous> (/usr/lib/nodejs/request/main.js:412:12)
+ERR!     at ClientRequest.g (events.js:156:14)
+ERR!     at ClientRequest.emit (events.js:67:17)
+ERR!     at HTTPParser.parserOnIncomingClient [as onIncoming] (http.js:1256:7)
+ERR! You may report this log at:
+ERR!     <http://bugs.debian.org/npm>
+ERR! or use
+ERR!     reportbug --attach /home/pi/vlla-new/tests_for_8bit/npm-debug.log npm
+ERR! 
+ERR! System Linux 4.1.6-v7+
+ERR! command "/usr/bin/nodejs" "/usr/bin/npm" "install" "serialport"
+ERR! cwd /home/pi/vlla-new/tests_for_8bit
+ERR! node -v v0.6.19
+ERR! npm -v 1.1.4
+ERR! message failed to fetch from registry: serialport
+verbose exit [ 1, true ]
