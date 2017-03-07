@@ -2,6 +2,10 @@
 ## Background
 the vlla resides on 2E, East Campus, MIT. vlla represents a rethinking of the traditional LED paradigm, and uses traditional, GMO free, farm-to-table LED rendering techniques. the vlla is (probably) not sentient. beast is not a hivemind.
 
+## See it in action!
+![He-Man](https://thumbs.gfycat.com/CalmLinedDesertpupfish-size_restricted.gif)
+![Nyan cat](https://thumbs.gfycat.com/FatScrawnyEland-size_restricted.gif)
+![Conway's game of life](https://thumbs.gfycat.com/BlandIllustriousAlaskajingle-size_restricted.gif)
 ## Launching
 ### Server
 ```sh
