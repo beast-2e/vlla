@@ -41,15 +41,7 @@ client.on('connect', function(conn) {
 client.connect('ws://localhost:8080/', 'vlla');
 
 function encode(pixels) {
-  this.buffer = this.buffer || new Buffer(VLLA_WIDTH * VLLA_HEIGHT);
-
-  for (var i = 0; i < pixels.length; i += 4) {
-    this.buffer[i / 4] = (Math.floor(pixels[i + 2] / 32) << 5) + // Red - 3 bits
-      (Math.floor(pixels[i + 1] / 32) << 2) + // Green - 3 bits
-      (Math.floor(pixels[i] / 64)); // Blue - 2 bits
-  }
-
-  return this.buffer;
+  return new Buffer(pixels);
 }
 
 module.exports = {

@@ -73,7 +73,6 @@ const int ledsPerStrip = 2 * LED_WIDTH;
 DMAMEM int displayMemory[3*totalLeds/4]; // 3 bytes per led, 4 bytes per int
 int drawingMemory[3*totalLeds/4]; // 3 bytes per led, 4 bytes per int
 int drawingMemory_24bit[totalLeds];
-char drawingMemory_8bit[totalLeds];
 elapsedMicros elapsedUsecSinceLastFrameSync = 0;
 
 const int config = WS2811_800kHz; // color config is on the PC side
@@ -90,32 +89,18 @@ void setup() {
 
 int i = 0;
 
-int convert_8bit_to_24bit(char c_8bit){
-  // RRRGGGBB
-  // becomes
-  // 00000GGG 00000RRR 000000BB
-  return ((c_8bit & 3   )       ) + // Blue
-         ((c_8bit & 28  ) << 14 ) + // Green
-         ((c_8bit & 224 ) << 3  );  // Red
-}
-
 bool get_bit(int num, int index){
   return (num >> index) & 1;
 }
 
-// Draw 8 bit values to the drawingMemory
-void draw_8bit(char* drawingMemory_8bit) {
-
-  // Convert all 8 bit values into 24 bit values, temporarily
-  for(int led = 0; led < totalLeds; led++) {
-    drawingMemory_24bit[led] = convert_8bit_to_24bit(drawingMemory_8bit[led]);
-  }
+// Draw values to the drawingMemory
+void draw(char* drawingMemory) {
 
   // Do the interleaving thing with the bits and bytes...
   // See the diagram in README.md
 
   // Sneaky bit hack
-  char* drawingMemoryAsChar = (char *)&drawingMemory;
+  char* drawingMemoryAsChar = (char *)drawingMemory;
 
   // Interleaving is pretty much matrix transpose, right?
   for(int column = 0; column < ledsPerStrip; column++) {
@@ -140,10 +125,10 @@ void loop() {
   while(Serial.read() != 255);
 
   // Get that image
-  int count = Serial.readBytes(drawingMemory_8bit, sizeof(drawingMemory_8bit));
+  int count = Serial.readBytes(drawingMemory, sizeof(drawingMemory));
 
   // Decode 8 bit color values and copy into drawingMemory
-  draw_8bit(drawingMemory_8bit);
+  draw(drawingMemory);
 
   // Update LEDS
   leds.show();
