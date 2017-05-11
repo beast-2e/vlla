@@ -10,8 +10,9 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "canvas": "^1.6.3",
+    "canvas": "^1.6.5",
     "forever": "^0.15.3",
+    "nodemon": "^1.11.0",
     "websocket": "^1.0.24"
   },
   "devDependencies": {

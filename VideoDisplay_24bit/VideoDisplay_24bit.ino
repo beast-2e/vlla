@@ -58,7 +58,7 @@ https://github.com/PaulStoffregen/OctoWS2811/tree/master/extras
     ports on the same motherboard, may give poor performance.
 */
 
-#include "OctoWS2811_8bit.h"
+#include "OctoWS2811_modified.h"
 
 // The actual arrangement of the LEDs connected to this Teensy 3.0 board.
 // LED_HEIGHT *must* be a multiple of 8.  When 16, 24, 32 are used, each
@@ -72,7 +72,7 @@ const int ledsPerStrip = 2 * LED_WIDTH;
 
 DMAMEM int displayMemory[3*totalLeds/4]; // 3 bytes per led, 4 bytes per int
 int drawingMemory[3*totalLeds/4]; // 3 bytes per led, 4 bytes per int
-int drawingMemory_24bit[totalLeds];
+char drawingMemory_24bit[3*totalLeds]; // 3 bytes per led, 4 bytes per int
 elapsedMicros elapsedUsecSinceLastFrameSync = 0;
 
 const int config = WS2811_800kHz; // color config is on the PC side
@@ -93,8 +93,13 @@ bool get_bit(int num, int index){
   return (num >> index) & 1;
 }
 
+// Remaps colors if r = 0, g = 1, b = 2.
+int grb_to_rgb(int index) {
+  return index == 0 ? 1 :
+         index == 1 ? 0 : index;
+}
 // Draw values to the drawingMemory
-void draw(char* drawingMemory) {
+void draw(char* drawingMemory_24bit) {
 
   // Do the interleaving thing with the bits and bytes...
   // See the diagram in README.md
@@ -112,7 +117,7 @@ void draw(char* drawingMemory) {
       char interleaved = 0;
       // Each byte consists of one bit from LEDs across each strip
       for(int strip = 0; strip < totalLeds / ledsPerStrip; strip++) {
-        interleaved |= get_bit(drawingMemory_24bit[flippedColumn + strip * ledsPerStrip], 23 - color_24bit) << strip;
+        interleaved |= get_bit(drawingMemory_24bit[(flippedColumn + strip * ledsPerStrip) * 3 + grb_to_rgb(color_24bit/8)], 7 - color_24bit%8) << strip;
       }
       drawingMemoryAsChar[column * 24 + color_24bit] = interleaved;
     }
@@ -125,10 +130,10 @@ void loop() {
   while(Serial.read() != 255);
 
   // Get that image
-  int count = Serial.readBytes(drawingMemory, sizeof(drawingMemory));
+  Serial.readBytes(drawingMemory_24bit, sizeof(drawingMemory_24bit));
 
   // Decode 8 bit color values and copy into drawingMemory
-  draw(drawingMemory);
+  draw(drawingMemory_24bit);
 
   // Update LEDS
   leds.show();

@@ -24,7 +24,7 @@
 */
 
 #include <string.h>
-#include "OctoWS2811_8bit.h"
+#include "OctoWS2811_modified.h"
 
 
 uint16_t OctoWS2811::stripLen;
