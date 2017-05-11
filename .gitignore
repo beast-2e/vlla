@@ -67,3 +67,5 @@ Session.vim
 # temporary
 .netrwhist
 *~
+
+build/
