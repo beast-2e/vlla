@@ -110,7 +110,10 @@ void draw(char* drawingMemory_24bit) {
   // Interleaving is pretty much matrix transpose, right?
   for(int column = 0; column < ledsPerStrip; column++) {
     // Take care of how each LED strip "zig-zags" across the vlla
-    int flippedColumn = column >= LED_WIDTH ? ledsPerStrip - (column - LED_WIDTH) - 1: column;
+    //int flippedColumn = column >= LED_WIDTH ? ledsPerStrip - (column - LED_WIDTH) - 1: column;
+
+    // Strange hack for missing first pixel???
+    int flippedColumn = column+1>=ledsPerStrip-1?ledsPerStrip-1:column+1 >= LED_WIDTH ? ledsPerStrip - (column+1 - LED_WIDTH) - 1: column+1;
 
     // Keep 24 bit RGB chunks together
     for(int color_24bit = 0; color_24bit < 24; color_24bit++) {
@@ -139,4 +142,3 @@ void loop() {
   leds.show();
 
 }
-
