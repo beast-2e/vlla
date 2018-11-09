@@ -46,7 +46,7 @@ vlla.render();
 ```
 
 ### /server
-WebSocket server that accepts connections on **port 8080**. To send a frame, send a ``vlla`` request with the base64-encoded data in RRRGGGBB format. The frame must be exactly 1960 bytes long (60 x 32). The server splits and forwards the data to the Teensys through serial.
+WebSocket server that accepts connections on **port 8080**. To send a frame, send a ``vlla`` request with the data as a binary array with 60 x 32 x 3 bytes, in R G B R G B format (each color channel is one byte). The server splits and forwards the data to the Teensys through serial.
 
 ### /VideoDisplay_8bit
 Teensy driver. Accepts 1 byte per LED (960 bytes total, 60 wide by 16 px high), sent in reading order (left-to-right, then top-to-bottom). Each byte should be in the 256 color format: RRRGGGBB. Before sending the data, you must send 0xFF (255). This helps the Teensy know when a frame starts. **Make sure that in your color data, you aren't sending 0xFF (255).**
