@@ -5,7 +5,7 @@
 const SWAP_TEENSY_ORDER = 0;
 
 // Make false to test without teensys
-const DEBUG_USE_TEENSY = false;
+const DEBUG_USE_TEENSY = true;
 
 // Web socket port can be set from the command line as the second argument.
 // Port 8080 is default. 80 is preferred but requires the use of sudo.
@@ -72,9 +72,11 @@ function transformColor(colorToDisplay, i){
 
 // PHYSICAL DRIVER CODE
 
+let teensy1, teensy2;
+
 if(DEBUG_USE_TEENSY){
-  let teensy1 = new SerialPort('/dev/ttyACM' + (SWAP_TEENSY_ORDER), {baudRate: 4000000});
-  let teensy2 = new SerialPort('/dev/ttyACM' + (1 - SWAP_TEENSY_ORDER), {baudRate: 4000000});
+  teensy1 = new SerialPort('/dev/ttyACM' + (SWAP_TEENSY_ORDER), {baudRate: 4000000});
+  teensy2 = new SerialPort('/dev/ttyACM' + (1 - SWAP_TEENSY_ORDER), {baudRate: 4000000});
 }
 
 let writeFrame1 = new Buffer(TOTAL_BYTES/2 + 1).fill(0);

@@ -9,7 +9,9 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "express": "^4.16.4",
     "forever": "^0.15.3",
-    "serialport": "^4.0.7"
+    "serialport": "^4.0.7",
+    "ws": "^6.1.4"
   }
 }
