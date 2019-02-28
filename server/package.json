@@ -10,7 +10,6 @@
   "license": "MIT",
   "dependencies": {
     "forever": "^0.15.3",
-    "serialport": "^4.0.7",
-    "websocket": "^1.0.24"
+    "serialport": "^4.0.7"
   }
 }

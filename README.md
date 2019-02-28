@@ -6,6 +6,10 @@ the vlla resides on 2E, East Campus, MIT. vlla represents a rethinking of the tr
 ![He-Man](https://thumbs.gfycat.com/CalmLinedDesertpupfish-size_restricted.gif)
 ![Nyan cat](https://thumbs.gfycat.com/FatScrawnyEland-size_restricted.gif)
 ![Conway's game of life](https://thumbs.gfycat.com/BlandIllustriousAlaskajingle-size_restricted.gif)
+
+## Install
+There are issues on the raspberry pi using the latest 10x and 9x node.js versions... use nodejs 8 instead!
+
 ## Launching
 ### Server
 ```sh
