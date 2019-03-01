@@ -10,6 +10,17 @@ the vlla resides on 2E, East Campus, MIT. vlla represents a rethinking of the tr
 ## Install
 There are issues on the raspberry pi using the latest 10x and 9x node.js versions... use nodejs 8 instead!
 
+```sh
+curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
+apt-get install -y nodejs
+```
+
+To flash the firmware on the teensys you will need teensyduino and arduino IDE installed
+
+https://www.arduino.cc/en/Main/Software
+
+https://www.pjrc.com/teensy/td_download.html
+
 ## Launching
 ### Server
 ```sh
