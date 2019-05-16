@@ -4,7 +4,7 @@
   "description": "vlla websocket server",
   "main": "app.js",
   "scripts": {
-    "start": "forever app.js"
+    "start": "forever app.js 80"
   },
   "author": "",
   "license": "MIT",
