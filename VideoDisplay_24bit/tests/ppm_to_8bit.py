@@ -2,6 +2,7 @@
 # python ppm_to_8bit.py > /dev/ttyACM1
 
 import fileinput
+import sys
 
 linecount = 0
 maxcolor = 256
