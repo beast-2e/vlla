@@ -100,8 +100,8 @@ class Canvas:
         """Sends the canvas data to the VLLA."""
         half = WIDTH*HEIGHT*3//2
         self.top.write(bytearray([0xff] + self.canvas[:half]))
-        self.bottom.write(bytearray([0xff] + self.canvas[half:]))
         self.top.flush()
+        self.bottom.write(bytearray([0xff] + self.canvas[half:]))
         self.bottom.flush()
 
 class DrawingCanvas(Canvas):
@@ -118,20 +118,31 @@ class DrawingCanvas(Canvas):
         """
         x1, y1 = start
         x2, y2 = end
-        width = abs(x1 - x2)
-        height = abs(y1 - y2)
+        width = x1 - x2
+        height = y1 - y2
 
-        if width > height:
+        if abs(width) > abs(height):
             dx = 1
-            dy = Fraction(height, width)
-            count = width
-        else:
-            dx = Fraction(width, height)
-            dy = 1
-            count = height
+            dy = Fraction(height, abs(width))
+            count = abs(width)
 
-        x = min(x1, x2)
-        y = min(y1, y2)
+            if x1 < x2:
+                x = x1
+                y = y1
+            else:
+                x = x2
+                y = y2
+        else:
+            dx = Fraction(width, abs(height))
+            dy = 1
+            count = abs(height)
+
+            if y1 < y2:
+                y = y1
+                x = x1
+            else:
+                y = y2
+                x = x2
 
         for i in range(count):
             self.set_pixel(col=math.floor(x), row=math.floor(y), color=color)

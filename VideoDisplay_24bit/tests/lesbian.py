@@ -1,0 +1,18 @@
+from vlla import *
+
+c = DrawingCanvas()
+color = Color(21, 14, 0)
+c.draw_rectangle((0, 0), (59, 4), color, color)
+color = Color(24, 12, 3)
+c.draw_rectangle((0, 5), (59, 9), color, color)
+color = Color(26, 16, 7)
+c.draw_rectangle((0, 10), (59, 13), color, color)
+color = Color(26, 26, 26)
+c.draw_rectangle((0, 14), (59, 17), color, color)
+color = Color(24, 11, 20)
+c.draw_rectangle((0, 18), (59, 21), color, color)
+color = Color(15, 4, 11)
+c.draw_rectangle((0, 22), (59, 26), color, color)
+color = Color(18, 0, 11)
+c.draw_rectangle((0, 27), (59, 31), color, color)
+c.flush()
