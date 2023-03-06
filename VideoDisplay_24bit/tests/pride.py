@@ -14,6 +14,7 @@ for i in range(0, 5):
 
 top_half = open('/dev/ttyACM0', 'wb')
 top_half.write(bytes(output))
+top_half.flush()
 
 output = [255]
 
@@ -29,3 +30,4 @@ for i in range(0, 6):
 
 bottom_half = open('/dev/ttyACM1', 'wb')
 bottom_half.write(bytes(output))
+bottom_half.flush()

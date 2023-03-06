@@ -104,6 +104,14 @@ class Canvas:
         self.bottom.write(bytearray([0xff] + self.canvas[half:]))
         self.bottom.flush()
 
+    def __getitem__(self, i):
+        """Returns the pixel at (x,y)."""
+        row, col = i
+        r = self.canvas[(row * WIDTH + col) * 3]
+        g = self.canvas[(row * WIDTH + col) * 3 + 1]
+        b = self.canvas[(row * WIDTH + col) * 3 + 2]
+        return Color(r, g, b)
+
 class DrawingCanvas(Canvas):
     """Represents a Canvas that has methods for drawing common geometric shapes.
 
@@ -123,26 +131,28 @@ class DrawingCanvas(Canvas):
 
         if abs(width) > abs(height):
             dx = 1
-            dy = Fraction(height, abs(width))
             count = abs(width)
 
             if x1 < x2:
                 x = x1
                 y = y1
+                dy = Fraction(y2 - y1, abs(width))
             else:
                 x = x2
                 y = y2
+                dy = Fraction(y1 - y2, abs(width))
         else:
-            dx = Fraction(width, abs(height))
             dy = 1
             count = abs(height)
 
             if y1 < y2:
                 y = y1
                 x = x1
+                dx = Fraction(x2 - x1, abs(height))
             else:
                 y = y2
                 x = x2
+                dx = Fraction(x1 - x2, abs(height))
 
         for i in range(count):
             self.set_pixel(col=math.floor(x), row=math.floor(y), color=color)
