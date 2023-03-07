@@ -33,7 +33,7 @@ def aromantic(c):
 
 def asexual(c):
     """Draws the asexual flag on the DrawingCanvas c"""
-    gray = Color(9, 9, 9)
+    gray = Color(8, 8, 8)
     white = Color(26, 26, 26)
     purple = Color(13, 0, 13)
 
