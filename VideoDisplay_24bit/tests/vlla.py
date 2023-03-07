@@ -159,11 +159,12 @@ class DrawingCanvas(Canvas):
             x += dx
             y += dy
 
-    def draw_rectangle(self, start, end, border, fill_color=None):
+    def draw_rectangle(self, start, end, border, fill_color=True):
         """Draws a rectangle with one corner at start, the other at end.
 
-        start and end are of the form (x, y). fill_color should be either a
-        color or None. If None is given, the rectangle will not be filled.
+        start and end are of the form (x, y). fill_color should be a color,
+        True, or None. If None is given, the rectangle will not be filled, but
+        if True is given, the rectangle will be filled with fill_color.
         """
         x1, y1 = start
         x2, y2 = end
@@ -185,6 +186,9 @@ class DrawingCanvas(Canvas):
             self.set_pixel(row=y, col=x2, color=border)
 
         if fill_color is not None:
+            if fill_color is True:
+                fill_color = border
+
             for x in range(x1+1, x2):
                 for y in range(y1+1, y2):
                     self.set_pixel(row=y, col=x, color=fill_color)
