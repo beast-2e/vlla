@@ -235,7 +235,7 @@ def shuffle(c, period=1200, prev_last=None):
     random.shuffle(flags)
 
     if flags[0] == prev_last:
-        i = random.randomrange(1, len(flags))
+        i = random.randrange(1, len(flags))
         temp = flags[i]
         flags[i] = flags[0]
         flags[0] = temp
