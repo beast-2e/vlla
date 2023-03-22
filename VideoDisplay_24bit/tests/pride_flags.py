@@ -214,6 +214,8 @@ def shuffle(c, period=1200, prev_last=None):
     The order of the flags is randomized, but if prev_last is given, that flag
     will not be displayed first.
     """
+    import random
+
     flags = [
         agender,
         aromantic,
