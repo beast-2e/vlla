@@ -89,7 +89,7 @@ class Canvas:
         assert 0 <= col < WIDTH, "column is out of range"
 
         for i in range(0, 3):
-            self.canvas[(row * WIDTH + col) * 3 + i] = color[i]
+            self.canvas[(row * WIDTH + col) * 3 + i] = min([color[i], 254])
 
     def clear(self, background=BLACK):
         """Clears the canvas to the given background color."""
@@ -111,6 +111,10 @@ class Canvas:
         g = self.canvas[(row * WIDTH + col) * 3 + 1]
         b = self.canvas[(row * WIDTH + col) * 3 + 2]
         return Color(r, g, b)
+
+    def __setitem__(self, i, val):
+        """Sets the pixel at (x,y)."""
+        self.set_pixel(i[0], i[1], val)
 
 class DrawingCanvas(Canvas):
     """Represents a Canvas that has methods for drawing common geometric shapes.

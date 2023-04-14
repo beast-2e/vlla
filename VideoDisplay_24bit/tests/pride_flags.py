@@ -1,6 +1,7 @@
 """Contains the various pride flags (hope I got most of them)"""
 
 from vlla import *
+from sparkle import sparkle
 
 def agender(c):
     """Draws the agender flag on the DrawingCanvas c"""
@@ -245,6 +246,11 @@ def shuffle(c, period=1200, prev_last=None):
     prev_last = flags[-1]
 
     for flag in flags:
+#        if flag in [lesbian, mlm, bisexual, pansexual]:
+#            sparkle(c, flag, time.time() + period)
+#        else:
+#            flag(c)
+#            time.sleep(period)
         flag(c)
         time.sleep(period)
 

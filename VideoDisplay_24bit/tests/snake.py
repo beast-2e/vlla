@@ -93,7 +93,7 @@ def run(canvas, until=None):
             board.direction = 'L' if fx < hx else 'R'
 
         if board.nextHead() in board.snake:
-            if new != orig and not snake.wouldDie(orig):
+            if new != orig and not board.wouldDie(orig):
                 board.direction = orig
             elif orig == 'L' or orig == 'R':
                 board.direction = 'U' if not board.wouldDie('U') else 'D'
