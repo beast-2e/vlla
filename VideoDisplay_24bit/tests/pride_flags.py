@@ -246,13 +246,11 @@ def shuffle(c, period=1200, prev_last=None):
     prev_last = flags[-1]
 
     for flag in flags:
-#        if flag in [lesbian, mlm, bisexual, pansexual]:
-#            sparkle(c, flag, time.time() + period)
-#        else:
-#            flag(c)
-#            time.sleep(period)
-        flag(c)
-        time.sleep(period)
+        if flag in [lesbian, mlm, bisexual, pansexual]:
+            sparkle(c, flag, time.time() + period)
+        else:
+            flag(c)
+            time.sleep(period)
 
     return prev_last
 
